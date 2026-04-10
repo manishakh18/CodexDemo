@@ -18,6 +18,11 @@ export default function Home() {
     setOutput("✨ " + input + " (Improved version)");
   };
 
+  const countWords = () => {
+    const wordCount = input.trim() ? input.trim().split(/\s+/).length : 0;
+    setOutput(`Word count: ${wordCount}`);
+  };
+
   return (
     <div style={{ padding: 40, fontFamily: "Arial" }}>
       <h1>Codex Demo App 🚀</h1>
@@ -38,6 +43,7 @@ export default function Home() {
         <button onClick={toUpperCase}>Uppercase</button>
         <button onClick={reverseText}>Reverse</button>
         <button onClick={improveText}>Improve</button>
+        <button onClick={countWords}>Count Words</button>
       </div>
 
       <h3 style={{ marginTop: 30 }}>Output:</h3>
