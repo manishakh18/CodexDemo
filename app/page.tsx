@@ -23,6 +23,23 @@ export default function Home() {
     setOutput(`Word count: ${wordCount}`);
   };
 
+  const baseButtonStyle = {
+    padding: "10px 14px",
+    borderRadius: 8,
+    border: "1px solid #d0d7de",
+    background: "#ffffff",
+    color: "#1f2328",
+    fontWeight: 600,
+    cursor: "pointer",
+  } as const;
+
+  const countWordsButtonStyle = {
+    ...baseButtonStyle,
+    border: "1px solid #0b57d0",
+    background: "#0b57d0",
+    color: "#ffffff",
+  } as const;
+
   return (
     <div style={{ padding: 40, fontFamily: "Arial" }}>
       <h1>Codex Demo App 🚀</h1>
@@ -39,11 +56,19 @@ export default function Home() {
         }}
       />
 
-      <div style={{ display: "flex", gap: 10 }}>
-        <button onClick={toUpperCase}>Uppercase</button>
-        <button onClick={reverseText}>Reverse</button>
-        <button onClick={improveText}>Improve</button>
-        <button onClick={countWords}>Count Words</button>
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <button style={baseButtonStyle} onClick={toUpperCase}>
+          Uppercase
+        </button>
+        <button style={baseButtonStyle} onClick={reverseText}>
+          Reverse
+        </button>
+        <button style={baseButtonStyle} onClick={improveText}>
+          Improve
+        </button>
+        <button style={countWordsButtonStyle} onClick={countWords}>
+          Count Words
+        </button>
       </div>
 
       <h3 style={{ marginTop: 30 }}>Output:</h3>
