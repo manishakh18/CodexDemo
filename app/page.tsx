@@ -30,7 +30,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-100 to-blue-200 px-5 py-10">
+    <div className="bg-linear-to-br from-slate-50 via-blue-100 to-blue-200 px-5 py-10">
       <div className="mx-auto max-w-4xl">
         <h1 className="mb-8 text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
           Codex Demo App 🚀
