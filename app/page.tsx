@@ -48,32 +48,33 @@ export default function Home() {
     [activeProductIndex],
   );
 
+  const showTextResult = (nextOutput: string) => {
+    setOutput(nextOutput);
+    setIsModalOpen(true);
+  };
+
   const toUpperCase = () => {
-    setOutput(input.toUpperCase());
+    showTextResult(input.toUpperCase());
   };
 
   const reverseText = () => {
     if (!input) {
-      setOutput("");
+      showTextResult("");
       return;
     }
 
     if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
       const segmenter = new Intl.Segmenter(undefined, { granularity: "grapheme" });
       const graphemes = Array.from(segmenter.segment(input), ({ segment }) => segment);
-      setOutput(graphemes.reverse().join(""));
+      showTextResult(graphemes.reverse().join(""));
       return;
     }
 
-    setOutput(Array.from(input).reverse().join(""));
+    showTextResult(Array.from(input).reverse().join(""));
   };
 
   const improveText = () => {
-    setOutput("✨ " + input + " (Improved version)");
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
+    showTextResult("✨ " + input + " (Improved version)");
   };
 
   const closeModal = () => {
@@ -210,25 +211,14 @@ export default function Home() {
             <Button onClick={toUpperCase}>Uppercase</Button>
             <Button onClick={reverseText}>Reverse</Button>
             <Button onClick={improveText}>Improve</Button>
-            <Button onClick={openModal} variant="backdrop">
-              Open Modal
-            </Button>
-          </div>
-
-          <h3 className="mt-8 text-xl font-semibold text-slate-900">Output:</h3>
-          <div className="mt-3 rounded-2xl bg-white/80 p-4 text-slate-800 shadow-sm ring-1 ring-slate-200">
-            {output}
           </div>
         </section>
       </div>
 
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2 className="mb-3 text-3xl font-semibold text-slate-950">
-          Hi, Welcome to Codex modal!
-        </h2>
+        <h2 className="mb-3 text-2xl font-semibold text-slate-950">Output</h2>
         <p className="mb-5 text-sm leading-6 text-slate-600">
-          This modal opens from the semi-backdrop button and now uses Tailwind
-          classes throughout the UI.
+          {output || "No output generated yet."}
         </p>
         <Button onClick={closeModal}>Close</Button>
       </Modal>
