@@ -89,7 +89,6 @@ export default function Home() {
       return currentIndex - 1;
     });
   };
-  console.log('Checking the value of output', output);
 
   const goToNextProduct = () => {
     setActiveProductIndex((currentIndex) => {
