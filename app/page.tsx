@@ -13,7 +13,19 @@ export default function Home() {
   };
 
   const reverseText = () => {
-    setOutput(input.split("").reverse().join(""));
+    if (!input) {
+      setOutput("");
+      return;
+    }
+
+    if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
+      const segmenter = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+      const graphemes = Array.from(segmenter.segment(input), ({ segment }) => segment);
+      setOutput(graphemes.reverse().join(""));
+      return;
+    }
+
+    setOutput(Array.from(input).reverse().join(""));
   };
 
   const improveText = () => {
